@@ -1,0 +1,112 @@
+
+<Window xmlns="https://github.com/avaloniaui"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:vm="using:lab7vs_pr.ViewModels"
+	  xmlns:model="using:lab7vs_pr.Models"
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	  mc:Ignorable="d" d:DesignWidth="300" d:DesignHeight="300"
+        x:Class="lab7vs_pr.Views.MainWindow"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="lab7vs_pr">
+	
+	<Grid RowDefinitions="auto,*,auto">
+		<Menu Grid.Row="0">
+			<MenuItem Header="File">
+				<MenuItem Header="Save" Name="Save"/>
+				<MenuItem Header="Load" Name="Load"/>
+				<MenuItem Header="Exit" Name="Exit"/>
+			</MenuItem>
+		</Menu>
+		
+		<DataGrid Name="data" Grid.Row="1" AutoGenerateColumns="False" Items="{Binding Students}">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="ФИО" Binding="{Binding Name}"/>
+				
+				<DataGridTemplateColumn Header="Сети ЭВМ и телекоммуникации">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding KSS[0].Mark}" Background="{Binding KSS[0].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding KSS[0].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Header="СГМА">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding KSS[1].Mark}" Background="{Binding KSS[1].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding KSS[1].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Header="Архитектура ЭВМ">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding KSS[2].Mark}" Background="{Binding KSS[2].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding KSS[2].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Header="Теория Вероятности">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding KSS[3].Mark}" Background="{Binding KSS[3].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding KSS[3].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="ЭЭС">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding KSS[4].Mark}" Background="{Binding KSS[4].Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+					<DataGridTemplateColumn.CellEditingTemplate>
+						<DataTemplate>
+							<TextBox Text="{Binding KSS[4].Mark}" LostFocus="cAverage"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellEditingTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridTemplateColumn Header="Средний балл">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding Average}"  Background="{Binding Background}" TextAlignment="Center"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+				
+				<DataGridCheckBoxColumn Header="CheckBox" Binding="{Binding IsChecked}"/>
+			</DataGrid.Columns>
+		</DataGrid>
+		
+		<Grid Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+			</Grid.ColumnDefinitions>
+			<Button Grid.Column="0" Command="{Binding Add}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" Content="Добавить студента" FontSize="14" Background="#d10035" Foreground="White"/>
+			<Button Grid.Column="1" Command="{Binding Delete}" HorizontalAlignment="Stretch" HorizontalContentAlignment="Center" FontSize="13" Background="#d10031" Foreground="White" Content="Удалить студента/ов"/>
+		</Grid>
+	</Grid>
+</Window>
